@@ -1,0 +1,19 @@
+function hourglassSum(arr) {
+    let value = -9999
+    const lastRow = arr.length - 1
+    arr.forEach((element, index) => {
+        const lastElement = element.length - 2
+        if (lastRow - index >= 2) {
+            for (let i = 0; i < lastElement; i++) {
+                let res = [
+                    ...element.slice(i, 3 + i),
+                    arr[index + 1][i + 1],
+                    ...arr[index + 2].slice(i, 3 + i)
+                ].reduce((acc, item) => acc += item, 0)
+                value < res ? value = res : null
+            }
+        }
+
+    });
+    return value
+}
